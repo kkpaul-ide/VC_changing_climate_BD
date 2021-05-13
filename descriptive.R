@@ -36,7 +36,7 @@ observedVC <- observedVC %>%
 
 # take seasonal average over the years
 div_Avg <- observedVC %>% 
-        group_by(season, year) %>%
+        group_by(year, division) %>%
         summarise(mean = mean(avg_temp, na.rm = TRUE),
                   min = mean(min_temp, na.rm = TRUE),
                   max = mean(max_temp, na.rm = TRUE),
@@ -44,18 +44,20 @@ div_Avg <- observedVC %>%
                   vc = mean(averageVC, na.rm = TRUE))
 
 # plot seasonal VC
-ggplot(div_Avg, mapping = aes(x=year,y=dtr)) +
+ggplot(div_Avg, mapping = aes(x=year,y=vc)) +
   geom_line()+
-  geom_smooth(method = "lm", se = FALSE)+
-  facet_grid(season ~ .)
+  geom_smooth(method = "lm", se = FALSE)
+#+  facet_grid(season ~ .)
 
 # Explore fit for a division
-fit <- (lm(vc ~ year, data = div_Avg %>% filter(division == "Sylhet")))
+fit <- (lm(vc ~ year, data = div_Avg))
 summary(fit)
 
 
 # load isimip data
-load(file.path(basepath, "data", "ISIMIP_data", "districts_isimip.RData"))
+#load(file.path(basepath, "data", "ISIMIP_data", "districts_isimip.RData"))
+load(file.path(basepath, "data", "ISIMIP_data", 
+               "stations_isimip.RData"))
 
 # Create season variable
 hist.sites.df$season[hist.sites.df$month %in% c(12,1,2)] <- "Winter"
@@ -65,9 +67,8 @@ hist.sites.df$season[hist.sites.df$month %in% c(9,10,11)] <- "Post-monsoon"
 
 # Take monthly average
 sites_month_Avg <- hist.sites.df %>%
-        group_by(division, rcp, gcm, month) %>%
-        summarise(VC = mean(VC, na.rm = TRUE)) %>%
-        dplyr::select(division, rcp,gcm,month,everything())
+        group_by(year, rcp, gcm, division) %>%
+        summarise(VC = mean(VC, na.rm = TRUE))
 
 # explore VC by rcp scenario for each month
 by(sites_month_Avg$VC, sites_month_Avg$month, summary)

@@ -85,7 +85,7 @@ stations <- c("Sylhet", "Srimangal", "Comilla", "Rangamati", "Chittagong",
 
 # take averages for each month of each year
 avgValues <- observedVC %>% 
-  filter(year < 2016, station %in% stations) %>% 
+  filter(year < 2016) %>% 
   group_by(year, month) %>% 
   summarise(mean = mean(avg_temp, na.rm = TRUE),
             min = mean(min_temp, na.rm = TRUE),
@@ -111,9 +111,10 @@ allTemp <- ggplot(avgValues_long %>%
   scale_linetype_manual(labels = c("Maximum", "Mean", "Minimum"),
                         values=c("longdash","solid", "dotted"))+
   labs(x = "Year",
-       y = "Temperature (°C)",
-       title = "Monthly averaged temperature in 17 stations across Bangladesh",
-       subtitle = "1975 - 2015")+
+       y = "Temperature (°C)"
+       #,title = "Monthly averaged temperature in 17 stations across Bangladesh",
+       #subtitle = "1975 - 2015"
+  )+
   theme(legend.title = element_blank(),
         legend.position="top",
         legend.text = element_text(size=12),
@@ -122,8 +123,10 @@ allTemp <- ggplot(avgValues_long %>%
         axis.text.x = element_text(size=12),
         axis.text.y = element_text(size=12))
 
+print(allTemp)
+
 if (saveResults) {
-  ggsave(filename = "time_series_observed.tiff", plot = allTemp, 
+  ggsave(filename = "time_series_observed_v2.tiff", plot = allTemp, 
          device = "tiff", 
          path = file.path(basepath, "outputs", "2021 03")) 
 }
