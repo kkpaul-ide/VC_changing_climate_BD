@@ -1,0 +1,24 @@
+.Rhistory
+*/.Rhistory
+*/*.Rdata
+
+# Folders that can be ignored
+articles/
+docs/
+misc/
+
+# DECCMA calculations can be ignored
+deccma_data.R
+code/date_df_deccma.R
+code/deccma_temp_extract.R
+code/deccma_VC.R
+data/DECCMA data/
+
+# ISIMIP data with 64 district centroids
+isimip_data.R
+data/*
+!data/daily_temperature.csv
+
+# Previous output folders can be avoided
+outputs/*
+!outputs/Figures_2021_VC_paper/
