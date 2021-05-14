@@ -15,9 +15,11 @@ code/deccma_VC.R
 data/DECCMA data/
 
 # ISIMIP data with 64 district centroids
-isimip_data.R
+isimip_data_district.R
 data/*
 !data/daily_temperature.csv
+!data/ListOf35BMDstations.csv
+!data/ISIMIP_data/
 
 # Previous output folders can be avoided
 outputs/*
