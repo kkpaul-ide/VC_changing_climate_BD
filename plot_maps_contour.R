@@ -33,6 +33,7 @@ source(file.path(basepath, "code", "vc_estimation.R"))
 # Script parameters -------------------------------------------------------
 # To be changed by user
 saveResults <- FALSE
+stationWise <- TRUE
 
 # Background map-----------------------------------------------------------
 # read shapefile
@@ -70,24 +71,22 @@ plot <- ggplot(data = bd, aes(x = long, y = lat)) +
                        model='WGS84', height = 0.01,anchor = c(x = 88, y = 21))+
         ggsn::north(data = bd, location = "bottomleft", scale = 0.15, 
                     anchor = c(x = 90.7, y = 20.8))+
-        #labs(title = "Divisions of Bangladesh with weather station locations")+
         annotate(geom="text", x=91, y=25.6, label="Weather stations",
                  color="black")+
         annotate("point", x=90.3, y=25.6, fill = "blue", alpha = 1, size = 2, 
                  shape = 21 )
 
 plot + theme(panel.background = element_rect(fill = NA),
-        #plot.margin = margin(1, 1, 1, 1, "cm"),
         plot.background = element_rect(fill = NA, colour = "black", size = 1),
         )
 
 if (saveResults) {
-        ggsave(file.path(basepath, "outputs", "2021 02", "bd_map_3.tiff")) 
+        ggsave(file.path(basepath, "outputs", "Figures_2021_VC_paper", "bd_map_3.tiff")) 
 }
 
 # Spatial distribution of VC maps------------------------------------------
 # load observed VC
-vecCapacity <- read.csv(file.path(basepath, "data", "vec_capacity.csv"),
+vecCapacity <- read.csv(file.path(basepath, "outputs", "vec_capacity.csv"),
                         header = TRUE)
 
 # take mean of observed VC over selected years
@@ -98,9 +97,11 @@ obsVC <- vecCapacity %>%
         rename(ADM1_EN = division) 
 
 # load isimip data
-#load(file.path(basepath, "data", "ISIMIP_data", "districts_isimip.RData"))
-load(file.path(basepath, "data", "ISIMIP_data", "stations_isimip.RData"))
-
+if (stationWise) {
+        load(file.path(basepath, "outputs", "stations_isimip.RData"))
+} else {
+        load(file.path(basepath, "outputs", "districts_isimip.RData"))
+}
 
 # take average for three twenty year periods after 
 # creating a variable with three different periods
@@ -137,10 +138,7 @@ g <- ggplot(data = bddf, aes(x = long, y = lat, group = group, fill = diffVC)) +
                               midpoint = 0)+
         theme_void()+
         theme(strip.text.y = element_text(angle = 270))+
-        labs(
-             # title = "Change in VC of Aedes aegypti over decades at eight divisions of Bangladesh",
-             # subtitle = "In reference to division specific observed VC for 1986-2005",
-             fill = "Percent\nChange")
+        labs(fill = "Percent\nChange")
 
 print(g)
 
@@ -149,7 +147,7 @@ grid::grid.draw(linesGrob(x = unit(c(0.445, 0.445), "npc"),
                           y = unit(c(0.02, 0.96), "npc")))
 
 if (saveResults) {
-        ggsave(file.path(basepath, "outputs", "2021 03", "spatial_decades_VC_v3.tiff"),
+        ggsave(file.path(basepath, "outputs", "Figures_2021_VC_paper", "spatial_decades_VC_v3.tiff"),
                width = 8.27, height = 11.69, units = "in", dpi = 600) # vertical line is not being saved
 }
 
@@ -192,8 +190,8 @@ sites_month_Avg <- hist.sites.df %>%
 # Create season variable
 sites_month_Avg <- sites_month_Avg %>%
         mutate(Season = case_when(month %in% c(12,1,2) ~ "Winter/Dry",
-                                  month %in% c(6,7,8) ~ "Monsoon",
-                                  month %in% c(9,10,11) ~ "Post-monsoon",
+                                  month %in% c(6,7,8,9) ~ "Monsoon",
+                                  month %in% c(10,11) ~ "Post-monsoon",
                                   month %in% c(3,4,5) ~ "Pre-monsoon")) %>%
         na.omit(sites_month_Avg)
 
@@ -210,9 +208,6 @@ g1 <- ggplot(dat, aes(x = Temperature, y = DTR, z = VC)) +
                            filter(rcp!="RCP 4.5"),mapping = aes(x=Temperature, y=DTR, group=Season, col = Season),alpha=0.7)+
         scale_color_manual(values = c("red", "orange", "pink", "black"))+
         facet_grid(gcm~period)+
-        # labs(title= "Theoretical contour of mean temperature, DTR, and VC",
-        #      subtitle = "Superimposed with division and month specific VC at three time periods",
-        #      col=element_blank())+
         theme(panel.background = element_blank())+
         theme(legend.text = element_text(size=8),
               axis.text.x = element_text(size=8),
@@ -222,7 +217,7 @@ print(g1)
 
 if (saveResults) {
         ggsave(filename = "Contour plot_4.tiff", plot = g1, device = "tiff", 
-               path = file.path(basepath, "outputs", "2021 02"), 
+               path = file.path(basepath, "outputs", "Figures_2021_VC_paper"), 
                width = 8.27, height = 7.5, units = "in", dpi = 600) 
 }
 

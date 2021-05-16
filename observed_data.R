@@ -32,7 +32,7 @@ saveResults <- FALSE
 
 # Calculate VC with observed temp data models------------------------------
 if (reload) {
-  observedVC <- read.csv(file.path(basepath, "data", "vec_capacity.csv"))
+  observedVC <- read.csv(file.path(basepath, "outputs", "vec_capacity.csv"))
 } else {
   # Read daily maximum, minimum, average and dtr data
   daily_temperature <- read.csv(file.path(basepath, "data", 
@@ -70,7 +70,7 @@ if (reload) {
                                 station %in% c("Sylhet","Srimangal") ~ "Sylhet"))
   
   # save dataframe as a csv file
-  write.csv(observedVC, file = file.path(basepath, "data", "vec_capacity.csv"), 
+  write.csv(observedVC, file = file.path(basepath, "outputs", "vec_capacity.csv"), 
             row.names = FALSE)
 }
 
@@ -111,10 +111,7 @@ allTemp <- ggplot(avgValues_long %>%
   scale_linetype_manual(labels = c("Maximum", "Mean", "Minimum"),
                         values=c("longdash","solid", "dotted"))+
   labs(x = "Year",
-       y = "Temperature (°C)"
-       #,title = "Monthly averaged temperature in 17 stations across Bangladesh",
-       #subtitle = "1975 - 2015"
-  )+
+       y = "Temperature (°C)")+
   theme(legend.title = element_blank(),
         legend.position="top",
         legend.text = element_text(size=12),

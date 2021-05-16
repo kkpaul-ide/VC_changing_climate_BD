@@ -24,3 +24,6 @@ data/*
 # Previous output folders can be avoided
 outputs/*
 !outputs/Figures_2021_VC_paper/
+!outputs/districts_isimip.RData
+!outputs/stations_isimip.RData
+!vec_capacity.csv
