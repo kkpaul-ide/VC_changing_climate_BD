@@ -1,5 +1,7 @@
 .Rhistory
 */.Rhistory
+*/*.RData
+*/*/*.tiff
 
 # Folders that can be ignored
 articles/
@@ -28,4 +30,3 @@ data/*
 # Previous output folders can be avoided
 outputs/*
 # !outputs/Figures_2021_VC_paper/
-
