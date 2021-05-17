@@ -1,13 +1,12 @@
 .Rhistory
 */.Rhistory
 */*.Rdata
+*/*/*.tiff
 
 # Folders that can be ignored
 articles/
-data/
 docs/
 misc/
-outputs/
 
 # Files that can can be ignored
 deccma_data.R
