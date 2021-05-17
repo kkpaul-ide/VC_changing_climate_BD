@@ -4,8 +4,10 @@
 
 # Folders that can be ignored
 articles/
+data/
 docs/
 misc/
+outputs/
 
 # Files that can can be ignored
 deccma_data.R
@@ -21,11 +23,11 @@ code/*
 
 # data that can be ignored
 data/*
-!data/bgd_adm_bbs_20201113_shp/
-!data/ISIMIP_data/
+# !data/bgd_adm_bbs_20201113_shp/
+# !data/ISIMIP_data/
 !data/ListOf35BMDstations.csv 
 !data/station_grids.txt
 
 # Previous output folders can be avoided
 outputs/*
-!outputs/Figures_2021_VC_paper/
+# !outputs/Figures_2021_VC_paper/
