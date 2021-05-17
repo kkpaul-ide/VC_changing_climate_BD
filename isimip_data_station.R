@@ -191,8 +191,10 @@ if (reload) {
         cols.num <- c("year","month","day")
         hist.sites.df[cols.num] <- sapply(hist.sites.df[cols.num],as.numeric)
         
-        save(hist.sites.df, file=file.path(basepath, "outputs",  
+        if (saveResults) {
+                save(hist.sites.df, file=file.path(basepath, "outputs",  
                                            "stations_isimip.RData"))
+        }
 }
 
 # Validity check with observed data----------------------------------------

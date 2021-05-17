@@ -7,23 +7,25 @@ articles/
 docs/
 misc/
 
-# DECCMA calculations can be ignored
+# Files that can can be ignored
 deccma_data.R
-code/date_df_deccma.R
-code/deccma_temp_extract.R
-code/deccma_VC.R
-data/DECCMA data/
-
-# ISIMIP data with 64 district centroids
 isimip_data_district.R
+
+# R functions that can be ignored
+code/*
+!code/functions.R
+!code/isimipHist_VC_station.R
+!code/isimipRCP_VC_station.R
+!code/isimipRCP_VC_station.R
+!code/vc_estimation.R
+
+# data that can be ignored
 data/*
-!data/daily_temperature.csv
-!data/ListOf35BMDstations.csv
+!data/bgd_adm_bbs_20201113_shp/
 !data/ISIMIP_data/
+!data/ListOf35BMDstations.csv 
+!data/station_grids.txt
 
 # Previous output folders can be avoided
 outputs/*
 !outputs/Figures_2021_VC_paper/
-!outputs/districts_isimip.RData
-!outputs/stations_isimip.RData
-!vec_capacity.csv

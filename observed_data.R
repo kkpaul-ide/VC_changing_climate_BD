@@ -27,7 +27,7 @@ source(file.path(basepath, "code", "functions.R"))
 
 # Script parameters -------------------------------------------------------
 # To be changed by user
-reload <- TRUE
+reload <- FALSE
 saveResults <- FALSE
 
 # Calculate VC with observed temp data models------------------------------
@@ -70,8 +70,10 @@ if (reload) {
                                 station %in% c("Sylhet","Srimangal") ~ "Sylhet"))
   
   # save dataframe as a csv file
-  write.csv(observedVC, file = file.path(basepath, "outputs", "vec_capacity.csv"), 
-            row.names = FALSE)
+  if (saveResults) {
+    write.csv(observedVC, file = file.path(basepath, "outputs", "vec_capacity.csv"), 
+              row.names = FALSE)
+  }
 }
 
 ##Validation of station data with Shamsuddin Shahid paper------------------
