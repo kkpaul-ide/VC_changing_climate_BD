@@ -24,6 +24,7 @@ data/*
 # !data/ISIMIP_data/
 !data/ListOf35BMDstations.csv 
 !data/station_grids.txt
+!.gitkeep
 
 # Previous output folders can be avoided
 outputs/*
