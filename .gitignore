@@ -16,7 +16,6 @@ code/*
 !code/functions.R
 !code/isimipHist_VC_station.R
 !code/isimipRCP_VC_station.R
-!code/isimipRCP_VC_station.R
 !code/vc_estimation.R
 
 # data that can be ignored
