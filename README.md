@@ -4,8 +4,7 @@ This repository contains all the code and processed climate data (except observe
 
 [![DOI](https://zenodo.org/badge/365786828.svg)](https://zenodo.org/badge/latestdoi/365786828)
 
-The results are reported in the article: *Dengue transmission risk in a changing climate: Bangladesh could experience a longer dengue fever season in the future* ADD FULL REFERNCE ONCE ON MEDRXIV. 
-
+The results are reported in the manuscript: KK Paul et. al., *Dengue transmission risk in a changing climate: Bangladesh could experience a longer dengue fever season in the future* submitted to the journal of Environmental Research Letters (ERL).
 
 All codes were created and run using R statistical software version 4.0.2 and Rstudio version 1.3.1056 with associated packages (ncdf4 1.17; tidyverse 1.3.0; reshape2 1.4.4; raster 3.3-7; RColorBrewer 1.1-2; grid 4.0.2; rgdal 1.5-12; cowplot 1.1.1). Some of the data files required to run the scripts are not publicly available and have been excluded from the repository (but can be provided on request). Please report an issue if you have any problems running the code or contact either Kpaul@kirby.unsw.edu.au or Rgray@kirby.unsw.edu.au.
 
