@@ -2,7 +2,7 @@
 
 This repository contains all the code and processed climate data (except observed weather station data) to calculate vectorial capacity of Aedes aegypti mosquitoes in Bangladesh for the period 1950-2099. 
 
-https://zenodo.org/badge/365786828.svg
+[![DOI](https://zenodo.org/badge/365786828.svg)](https://zenodo.org/badge/latestdoi/365786828)
 
 The results are reported in the article: *Dengue transmission risk in a changing climate: Bangladesh could experience a longer dengue fever season in the future* ADD FULL REFERNCE ONCE ON MEDRXIV. 
 
