@@ -24,7 +24,7 @@ basepath <- getwd()
 options(scipen = 999)
 
 # load observed VC
-observedVC <- read.csv(file.path(basepath, "data","vec_capacity.csv"), header = TRUE)
+observedVC <- read.csv(file.path(basepath, "outputs","vec_capacity.csv"), header = TRUE)
 
 # Create season variable
 observedVC <- observedVC %>%

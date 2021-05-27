@@ -42,11 +42,11 @@ source(file.path(basepath, "code", "vc_estimation.R"))
 source(file.path(basepath, "code", "isimipRCP_VC_station.R"))  
 source(file.path(basepath, "code", "isimipHist_VC_station.R")) 
 
-# Read division and districts names 
+# Read weather station names 
 df <- read.csv(file.path(basepath,"data","ListOf35BMDstations.csv"),
                header = TRUE, sep = ",")
 
-# Make a list of divisions with corresponding districts
+# Make a list of divisions with weather stations
 divs <- list(Mymensingh = "Mymensingh",
              Sylhet     = c("Sylhet","Srimangal"),
              Rajshahi   = c("Ishurdi", "Rajshahi", "Bogra"),
